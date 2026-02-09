@@ -1,0 +1,76 @@
+============================================================
+
+Cuando creamos un proyecto con TypeScript (TS), le estamos dando "superpoderes" a 
+nuestro JavaScript. TS nos obligará a definir qué tipo de datos estamos manejando 
+(¿es un texto? ¿es un número? ¿es un contrato de la API?). 
+Esto evita que nuestra app se rompa en producción por errores tontos.
+============================================================
+
+
+============================================================
+npm create vite@latest: Llama al constructor de proyectos de Vite.
+
+--template vue-ts: Le dice "Quiero Vue y quiero TypeScript".
+
+npm install: Descarga todas las "piezas" (librerías) que Vue necesita para funcionar.
+
+npm run dev: Levanta un servidor local para que veas tu app en el navegador
+============================================================
+
+
+
+============================================================
+📚 Teoría Breve: ¿Qué es la Composition API?
+En versiones antiguas (Vue 2), el código estaba separado por "cajones" (data, methods, computed). 
+En Vue 3 usamos la Composition API (con la etiqueta <script setup>). 
+Imagina que es como escribir una receta: declaras tus ingredientes y luego dices qué hacer con ellos, todo en un flujo natural.
+============================================================
+
+
+============================================================
+📚 La Teoría: Interfaces
+Una interface es como un contrato o un molde. Define qué campos trae un objeto. 
+Si la API nos manda un campo llamado valor_del_contrato, lo definimos en la interfaz 
+para que el editor nos ayude con el autocompletado.
+============================================================
+
+
+============================================================
+📚 La Teoría: ¿Qué es un Composable?
+Es una función que encapsula lógica reactiva. Por convención, 
+sus nombres empiezan con "use" (como useContratos). 
+Es como extraer el cerebro de una parte de la app para poder usarlo en cualquier lado.
+
+============================================================
+
+
+============================================================
+📚 La Teoría: ¿Qué es un Axios?
+Axios es una librería de JavaScript que sirve para comunicarse 
+con servidores usando HTTP.
+Axios actúa como un cliente, no como servidor.
+App → Axios → API → Axios → App
+instalar axios: npm install axios
+
+============================================================
+
+
+
+
+============================================================
+📚 La Teoría: ¿Qué es un onMounted?
+// onMounted se ejecuta cuando el componente ya está montado en el DOM.
+//¿Cuándo se dispara exactamente?
+// Vue crea el componente
+// Vue renderiza el HTML
+// Vue lo inserta en el DOM
+// 🔥 Se ejecuta onMounted
+============================================================
+
+
+
+
+
+
+
+
