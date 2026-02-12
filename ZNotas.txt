@@ -68,6 +68,16 @@ instalar axios: npm install axios
 ============================================================
 
 
+============================================================
+📚 La Teoría: Props (Padre a Hijo)
+Las Props son la forma en que un padre le pasa información a un hijo. 
+Imagina que el padre (App.vue) tiene la maleta de datos y se la entrega al hijo (TablaContratos.vue) para que la organice.
+============================================================
+
+
+
+
+
 
 
 

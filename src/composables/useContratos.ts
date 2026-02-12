@@ -1,13 +1,13 @@
 import {ref, onMounted} from 'vue';
 import { secopGetApi } from '../services/contratos.service';
 import type {Contrato} from '../types/Contrato';
-
+import { ContractMapper } from '../mapper/contratos.mapper';
 
 // Composable encargado de gestionar la consulta de contratos desde el servicio pública de SECOP II, 
 // incluyendo manejo de estado de carga y errores.
 
-export const useContratos =() =>{
-    const contratos = ref<Contrato[]>();
+export const useContratos = () =>{
+    const contracts = ref<Contrato[]>([]);// valor inicial para que no se undefined
     const loading = ref<boolean>(false);
     const error = ref<string|null>(null);
 
@@ -15,7 +15,7 @@ export const useContratos =() =>{
         loading.value = true;
         error.value = null;
         try{
-            contratos.value = await secopGetApi('900959048');
+            contracts.value = ContractMapper.mapTransformToArrayRestContractToContract(await secopGetApi('891500997'));
         }catch(e:any){
             error.value = e.response?.data?.message || 'Error al obtener los datos';
         }finally{
@@ -27,12 +27,11 @@ export const useContratos =() =>{
 
     // “Cuando este composable sea usado por un componente y el componente se monte, ejecuta obtenerContratos()”.
     return{
-        contratos,
+        contracts,
         loading,
         error,
         obtenerContratos
     }
 }
-
 
 

@@ -12,7 +12,7 @@ export class ContractMapper{
         id_contrato: contract.referencia_del_proceso,
         nombre_entidad: contract.entidad,
         objeto_contrato: contract.descripci_n_del_procedimiento,
-        face_actual:contract.fase,
+        fase_actual:contract.fase,
         fecha_publicacion:contract.fecha_de_publicacion_del,
         valor_contrato: contract.valor_total_adjudicacion,
         estado_contrato: contract.estado_del_procedimiento,

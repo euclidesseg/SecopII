@@ -1,31 +1,120 @@
-<script setup lang="ts"> // setup indica que usaremos Composition API y lang="ts" activa TypeScript.
+<script setup lang="ts">// setup indica que usaremos Composition API y lang="ts" activa TypeScript.
 
-  import { useContratos } from './composables/useContratos';
-  import {ref} from 'vue'
+import FooterComponent from './shared/components/footer.component.vue';
+import ListComponent from './components/list.component.vue';
+import NavComponent from './shared/components/nav.component.vue';
+import { useContratos } from './composables/useContratos';
+import { ref } from 'vue'
+import HeroComponent from './components/hero.component.vue';
 
 
-  // definimos una propiedad reactiva (ref) indica que cuando 
-  // esta variable cambie, la vista se actualizará automáticamente.
-  const title = ref('Visor de contratos públicos');
+// definimos una propiedad reactiva (ref) indica que cuando 
+// esta variable cambie, la vista se actualizará automáticamente.
+
+const { contracts, loading, error, obtenerContratos } = useContratos()
 
 
-  const loading = ref(useContratos().loading);
-  console.log(loading.value);
+const modeList = ref<string>('table')
 
+const changeMode = (mode: string) => {
+  modeList.value = mode
+}
+const refreshData = () => {
+  obtenerContratos();
+}
 
 </script>
+
+
+
 <template>
   <main>
-    <h1>{{ title }}</h1>
-    <p class="text-3xl font-semibold underline">Bienvenido al sistema de consulta.</p>
-    
+    <div class="min-h-screen flex flex-col">
+
+      <!-- Navegación -->
+      <NavComponent></NavComponent>
+
+      <!-- Hero Section -->
+      <HeroComponent></HeroComponent>
+
+      <!-- Dashboard de Resultados -->
+      <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grow">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+          <div class="space-y-2">
+            <h2 class="text-4xl font-black text-slate-900 tracking-tight">Fuente de Datos</h2>
+            <p class="text-slate-500 font-medium flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full brand-bg animate-pulse"></span>
+              Resultados procesados mediante endpoint JSON oficial
+            </p>
+          </div>
+          <div class="flex bg-white p-1.5 gap-1 rounded-xl border border-slate-200 shadow-sm">
+            <button class="px-5 py-2.5 rounded-lg text-sm font-bold transition hover:text-slate-600 "
+              @click="changeMode('grid')"
+              :class="{ 'bg-slate-100 hover:bg-slate-200 text-slate-700': modeList === 'grid' }">
+              Vista Grid
+            </button>
+            <button class="px-5 py-2.5 rounded-lg text-sm font-bold text-slate-400 hover:text-slate-600  transition"
+              @click="changeMode('table')"
+              :class="{ 'bg-slate-100 hover:bg-slate-200 text-slate-700': modeList === 'table' }">
+              Vista Tabla
+            </button>
+          </div>
+        </div>
+
+        <ListComponent :contracts="contracts" :mode="modeList" @refresh="refreshData"></ListComponent>
+      </section>
+
+      <!-- Footer Profesional -->
+      <FooterComponent></FooterComponent>
+    </div>
+
 
   </main>
 </template>
 
-<style scoped> /* scoped indica que los estilos solo se aplican a este componente */
-  h1 {
-    color: #42b883;
-  }
+<style>
+/* scoped indica que los estilos solo se aplican a este componente */
+.brand-bg {
+  background-color: #6e11b0;
+}
 
+.bg-header-table {
+  background-color: #7d34b1;
+}
+
+.brand-hover-bg:hover {
+  background-color: #801bc8;
+}
+
+.brand-text {
+  color: #6e11b0;
+}
+
+.brand-border {
+  border-color: #6e11b0;
+}
+
+.brand-shadow {
+  box-shadow: 0 10px 25px -5px rgba(110, 17, 176, 0.3);
+}
+
+.brand-ring:focus {
+  --tw-ring-color: #6e11b0;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Gradientes personalizados */
+.hero-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(110, 17, 176, 0.08) 0%, transparent 70%);
+}
 </style>
