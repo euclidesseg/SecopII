@@ -43,7 +43,7 @@ const refreshData = () => {
           <div class="space-y-2">
             <h2 class="text-4xl font-black text-slate-900 tracking-tight">Fuente de Datos</h2>
             <p class="text-slate-500 font-medium flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full brand-bg animate-pulse"></span>
+              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
               Resultados procesados mediante endpoint JSON oficial
             </p>
           </div>
@@ -73,18 +73,8 @@ const refreshData = () => {
 </template>
 
 <style>
+@import url('../src/style.css');
 /* scoped indica que los estilos solo se aplican a este componente */
-.brand-bg {
-  background-color: #6e11b0;
-}
-
-.bg-header-table {
-  background-color: #7d34b1;
-}
-
-.brand-hover-bg:hover {
-  background-color: #801bc8;
-}
 
 .brand-text {
   color: #6e11b0;

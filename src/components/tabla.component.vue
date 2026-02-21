@@ -103,7 +103,7 @@ const table = useVueTable({
 <template>
   <div class="overflow-x-auto rounded-xl border border-gray-200 bg-white">
     <table class="min-w-full text-sm text-left text-gray-600">
-      <thead class="bg-header-table text-xs uppercase tracking-wider text-white">
+      <thead class="bg-primary/80 text-xs uppercase tracking-wider text-white">
         <tr v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id" class="px-4">
           <th v-for="header in headerGroup.headers" :key="header.id" @click="header.column.toggleSorting()"
             class="px-12 py-4 cursor-pointer select-none">
@@ -143,11 +143,11 @@ const table = useVueTable({
     
   </div>
   <div class="flex items-center justify-start gap-1.5 p-2">
-    <button @click="table.previousPage()" class="brand-bg p-2 rounded-md text-white font-semibold brand-hover-bg transition-colors text-lg cursor-pointer flex items-center justify-center">
+    <button @click="table.previousPage()" class="bg-primary p-2 rounded-md text-white font-semibold hover:bg-primary/90 transition-colors text-lg cursor-pointer flex items-center justify-center">
       <svg xmlns="http://www.w3.org/2000/svg" class="transform rotate-180 flex items-center justify-center" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m13.292 12l-4.6-4.6l.708-.708L14.708 12L9.4 17.308l-.708-.708z"/></svg>
       <span>Anterior</span>
     </button>
-    <button @click="table.nextPage()" class="brand-bg p-2 rounded-md text-white font-semibold brand-hover-bg transition-colors text-lg cursor-pointer flex items-center justify-center">
+    <button @click="table.nextPage()" class="bg-primary p-2 rounded-md text-white font-semibold hover:bg-primary/90 transition-colors text-lg cursor-pointer flex items-center justify-center">
       <span>Siguiente</span>
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m13.292 12l-4.6-4.6l.708-.708L14.708 12L9.4 17.308l-.708-.708z"/></svg>
     </button>

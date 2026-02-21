@@ -33,7 +33,7 @@ const formatCurrency = (val: number) => {
                 <div class="flex gap-1">
                     <div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
                     <div class="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
-                    <div class="w-1.5 h-1.5 rounded-full brand-bg"></div>
+                    <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
                 </div>
             </div>
 
@@ -44,7 +44,7 @@ const formatCurrency = (val: number) => {
 
             <div class="flex items-center gap-3 mb-8 bg-slate-50 p-3 rounded-2xl">
                 <div
-                    class="w-10 h-10 rounded-xl brand-bg flex items-center justify-center text-sm font-bold text-white shadow-inner">
+                    class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-sm font-bold text-white shadow-inner">
                     {{ contract.nombre_entidad.charAt(0) }}
                 </div>
                 <div class="overflow-hidden">

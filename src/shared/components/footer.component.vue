@@ -4,12 +4,12 @@
 <template>
 
     <footer class="bg-slate-950 text-white pt-24 pb-12 mt-20 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-1 brand-bg"></div>
+        <div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
                 <div class="space-y-6">
                     <div class="flex items-center gap-3">
-                        <div class="brand-bg p-2 rounded-xl">
+                        <div class="bg-primary p-2 rounded-xl">
                             <svg xmlns="http://www.w3.org/2000/svg" class="text-white w-6 h-6" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2.5">
                                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -70,7 +70,7 @@
                         <input type="email" placeholder="email@gov.co"
                             class="bg-slate-900 border-none rounded-xl px-4 py-3 text-sm flex-1 focus:ring-2 focus:ring-[#6e11b0] transition-all">
                         <button
-                            class="brand-bg p-3 rounded-xl hover:opacity-80 transition shadow-lg shadow-[#6e11b0]/20">
+                            class="bg-primary p-3 rounded-xl hover:opacity-80 transition shadow-lg shadow-[#6e11b0]/20">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="3">
                                 <path d="M5 12h14m-7-7 7 7-7 7" />

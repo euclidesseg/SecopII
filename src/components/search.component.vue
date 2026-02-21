@@ -4,11 +4,19 @@ import { ref } from 'vue';
 import { es } from "date-fns/locale"
   import '@vuepic/vue-datepicker/dist/main.css'
 
+
+  type FiltrosSecop = {
+    fechaDesde:Date,
+    fechaHasta:Date,
+  }
 const searchTerm = ref<string>('');
-const firstDate = ref();
-const lastDate = ref();
+const firstDate = ref<Date>();
+const lastDate = ref<Date>();
 
-
+const filters:FiltrosSecop={
+    fechaDesde: firstDate.value,
+    fechaHasta: lastDate.value
+}
 </script>
 
 <template>
@@ -37,22 +45,29 @@ const lastDate = ref();
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
-                        <label for="" class="text-sm font-medium text-gray-900 bg-blue-50 inline-block p-1 rounded-md my-2">Fecha Desde</label>
-                        <VueDatePicker v-model="firstDate" :time-config="{enableTimePicker:false}" :locale="es"></VueDatePicker>
+                        <label for="" class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Fecha Desde</label>
+                        <VueDatePicker 
+                        v-model="firstDate" 
+                        :time-config="{enableTimePicker:false}" 
+                        :locale="es"
+                        input-class-name="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary focus:outline-none p-2.5"    >
+                    </VueDatePicker>
                     </div>
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
-                        <label for="" class="text-sm font-medium text-gray-900 bg-blue-50 inline-block p-1 rounded-md my-2">Fecha Hasta</label>
-                        <VueDatePicker v-model="lastDate" :time-config="{enableTimePicker:false}" :locale="es"></VueDatePicker>
+                        <label for="" class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Fecha Hasta</label>
+                        <VueDatePicker v-model="lastDate" :time-config="{enableTimePicker:false}" :locale="es"
+                        :ui="{dayClass:(day, internalMode) => 'bg-gray-100'}"
+                        ></VueDatePicker>
                     </div>
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
-                        <label class="text-sm font-medium text-gray-900 bg-blue-50 inline-block p-1 rounded-md my-2">Referencia
+                        <label class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Referencia
                             del contrato</label>
-                        <input type="text" id="ref_contrato" class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2.5" placeholder="Referencia proceso">
+                        <input type="text" id="ref_contrato" class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:outline-none p-2.5" placeholder="Referencia proceso">
                     </div>
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
-                        <label class="text-sm font-medium text-gray-900 bg-blue-50 inline-block p-1 rounded-md my-2">Estado
+                        <label class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Estado
                             del proceso</label>
-                        <select id="estado_proceso" class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2.5">
+                        <select id="estado_proceso" class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:outline-none p-2.5">
                             <option value="">Seleccione</option>
                             
                             <option value="Seleccionado">Seleccionado</option>
@@ -71,17 +86,17 @@ const lastDate = ref();
 
                     </div>
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
-                        <label class="text-sm font-medium text-gray-900 bg-blue-50 inline-block p-1 rounded-md my-2">Descripción</label>
-                        <input type="text" id="descripcion_proceso" class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2.5" placeholder="Descripción">
+                        <label class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Descripción</label>
+                        <input type="text" id="descripcion_proceso" class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:outline-none p-2.5" placeholder="Descripción">
                     </div>
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
-                        <label class="text-sm font-medium text-gray-900 bg-blue-50 inline-block p-1 rounded-md my-2">Proveedor</label>
-                        <input type="text" id="nombre_proveedor" class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 p-2.5" placeholder="proveedor">
+                        <label class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Proveedor</label>
+                        <input type="text" id="nombre_proveedor" class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:outline-none p-2.5" placeholder="proveedor">
                     </div>
                 </div>
             </div>
             <button
-                class="brand-bg text-white w-full px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:opacity-90 transition-all flex items-center justify-center gap-3 brand-shadow">
+                class="bg-primary text-white w-full px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:opacity-90 transition-all flex items-center justify-center gap-3 shadow-md shadow-primary/50 ">
                 Ejecutar Query SoQL
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="3">
@@ -92,5 +107,5 @@ const lastDate = ref();
     </div>
 </template>
 <style scoped>
-
+    
 </style>
