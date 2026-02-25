@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import type { FiltrosSecop } from '../types/filters';
 import SearchComponent from './search.component.vue';
+    const emits = defineEmits<{'filtros':[FiltrosSecop:FiltrosSecop]}>();
 
 
 </script>
@@ -25,7 +27,7 @@ import SearchComponent from './search.component.vue';
           </p>
 
           <!-- Buscador Avanzado -->
-          <SearchComponent></SearchComponent>
+          <SearchComponent @filtros="emits('filtros', $event)"></SearchComponent>
         </div>
         
       </section>

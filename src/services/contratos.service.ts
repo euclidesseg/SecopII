@@ -1,5 +1,7 @@
 import axios from "axios";
 import type { RestContratos } from "../types/RestContratos";
+import type { FiltrosSecop } from '../types/filters';
+
 
 
 /**
@@ -10,7 +12,7 @@ import type { RestContratos } from "../types/RestContratos";
 const urlBase = "https://www.datos.gov.co/resource/p6dx-8zbt.json";
 
 
-export const secopGetApi = async ( nitEntidad: string, filtros?: any, limit = 50000, offset = 0): Promise<RestContratos[]> => {
+export const secopGetApi = async (filters:FiltrosSecop): Promise<RestContratos[]> => {
  const whereClause = buildWhereClause(nitEntidad, filtros);
  
   const response = await axios.get<RestContratos[]>(urlBase, {

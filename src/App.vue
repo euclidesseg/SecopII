@@ -11,14 +11,14 @@ import HeroComponent from './components/hero.component.vue';
 // definimos una propiedad reactiva (ref) indica que cuando 
 // esta variable cambie, la vista se actualizará automáticamente.
 
-const { contracts, loading, error, obtenerContratos } = useContratos()
+const { contracts, loading, error, } = useContratos()
 
 
 const modeList = ref<string>('table')
 
 const changeMode = (mode: string) => {
   modeList.value = mode
-}
+}  
 const refreshData = () => {
   obtenerContratos();
 }
@@ -35,7 +35,7 @@ const refreshData = () => {
       <NavComponent></NavComponent>
 
       <!-- Hero Section -->
-      <HeroComponent></HeroComponent>
+      <HeroComponent @filtros=""></HeroComponent>
 
       <!-- Dashboard de Resultados -->
       <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grow">

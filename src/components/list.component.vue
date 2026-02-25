@@ -7,9 +7,6 @@
 
   const emits = defineEmits<{(e:'refresh'):void}>();
 
-
-  console.log(props.mode)
-
 </script>
 
 
