@@ -6,12 +6,13 @@ import NavComponent from './shared/components/nav.component.vue';
 import { useContratos } from './composables/useContratos';
 import { ref } from 'vue'
 import HeroComponent from './components/hero.component.vue';
+import type { FiltrosSecop } from './types/filters';
 
 
 // definimos una propiedad reactiva (ref) indica que cuando 
 // esta variable cambie, la vista se actualizará automáticamente.
 
-const { contracts, loading, error, } = useContratos()
+const { contracts, loading, error,obtenerContratos } = useContratos()
 
 
 const modeList = ref<string>('table')
@@ -19,8 +20,9 @@ const modeList = ref<string>('table')
 const changeMode = (mode: string) => {
   modeList.value = mode
 }  
-const refreshData = () => {
-  obtenerContratos();
+const getData = async (filtros:FiltrosSecop) => {
+ contracts.value = [] // Limpiar los contratos actuales para mostrar el estado de carga
+ await obtenerContratos(filtros) // Volver a cargar los contratos desde el servicio
 }
 
 </script>
@@ -35,7 +37,7 @@ const refreshData = () => {
       <NavComponent></NavComponent>
 
       <!-- Hero Section -->
-      <HeroComponent @filtros=""></HeroComponent>
+      <HeroComponent @filtros="getData($event)"></HeroComponent>
 
       <!-- Dashboard de Resultados -->
       <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grow">
@@ -61,7 +63,7 @@ const refreshData = () => {
           </div>
         </div>
 
-        <ListComponent :contracts="contracts" :mode="modeList" @refresh="refreshData"></ListComponent>
+        <ListComponent :contracts="contracts" :mode="modeList"></ListComponent>
       </section>
 
       <!-- Footer Profesional -->

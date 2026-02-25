@@ -13,11 +13,12 @@ const urlBase = "https://www.datos.gov.co/resource/p6dx-8zbt.json";
 
 
 export const secopGetApi = async (filters:FiltrosSecop): Promise<RestContratos[]> => {
- const whereClause = buildWhereClause(nitEntidad, filtros);
+  console.log('Construyendo consulta con los siguientes filtros:', JSON.parse(JSON.stringify(filters)));
+ const whereClause = buildWhereClause(filters);
  
   const response = await axios.get<RestContratos[]>(urlBase, {
     params: {
-      $select: `
+      $select:`
         referencia_del_proceso,
         entidad,
         descripci_n_del_procedimiento,
@@ -28,16 +29,17 @@ export const secopGetApi = async (filters:FiltrosSecop): Promise<RestContratos[]
         urlproceso
       `,
       $where: whereClause,
-      $limit: limit,
-      $offset: offset
+      $limit: 50000,
     }
   });
   return response.data;
 };
 
-const buildWhereClause = (nitEntidad: string, filtros?: any): string => {
+const buildWhereClause = (filtros:FiltrosSecop): string => {
 
   let conditions: string[] = [];
+
+  const {nitEntidad, fechaDesde, fechaHasta, referencia, estado, descripcion, proveedor} = filtros
 
   // Siempre filtra por NIT
   conditions.push(`nit_entidad='${nitEntidad}'`);
@@ -48,29 +50,29 @@ const buildWhereClause = (nitEntidad: string, filtros?: any): string => {
   if (filtros.fechaDesde && filtros.fechaHasta) {
     conditions.push(`
       date_trunc_ymd(fecha_de_publicacion_del)
-      BETWEEN '${filtros.fechaDesde}'
-      AND '${filtros.fechaHasta}'
+      BETWEEN '${fechaDesde}'
+      AND '${fechaHasta}'
     `);
   }
 
   // Estado
-  if (filtros.estado?.trim()) {
-    conditions.push(`estado_del_procedimiento='${filtros.estado.trim()}'`);
+  if (estado.trim()!=="") {
+    conditions.push(`estado_del_procedimiento='${estado.trim()}'`);
   }
 
   // Referencia
-  if (filtros.referencia?.trim()) {
-    conditions.push(`referencia_del_proceso LIKE '%${filtros.referencia.trim()}%'`);
+  if (referencia.trim()!=="") {
+    conditions.push(`referencia_del_proceso LIKE '%${referencia.trim()}%'`);
   }
 
   // Descripción
-  if (filtros.descripcion?.trim()) {
-    conditions.push(`descripci_n_del_procedimiento LIKE '%${filtros.descripcion.trim()}%'`);
+  if (descripcion.trim()!=="") {
+    conditions.push(`descripci_n_del_procedimiento LIKE '%${descripcion.trim()}%'`);
   }
 
   // Proveedor
-  if (filtros.proveedor?.trim()) {
-    conditions.push(`nombre_del_proveedor LIKE '%${filtros.proveedor.trim()}%'`);
+  if (proveedor.trim()!=="") {
+    conditions.push(`nombre_del_proveedor LIKE '%${proveedor.trim()}%'`);
   }
 
   return conditions.join(" AND ");

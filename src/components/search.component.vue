@@ -15,7 +15,7 @@
     const lastDate = ref<Date>(new Date()); // Establece la fecha final a la fecha actual
 
     const form = ref<FiltrosSecop>({
-        idEntidad: '',
+        nitEntidad: '',
         fechaDesde: firstDate.value,
         fechaHasta: lastDate.value,
         referencia: '',
@@ -28,6 +28,7 @@
 
 
     const onSearchForm = () => {
+        console.log('Formulario enviado con los siguientes datos:', form.value);
         emits('filtros', form.value)
     }
 </script>
@@ -38,7 +39,7 @@
         <form action="" class="flex flex-col gap-2" @submit.prevent="() => onSearchForm()">
             <div class="flex flex-col flex-1 gap-3">
                 <div
-                    class="flex-1 flex items-center px-6 gap-4 bg-slate-50 rounded-2xl py-4 focus-within:ring-2 focus-within:ring-[#6e11b0]/20 transition-all">
+                    class="flex-1 flex items-center px-6 gap-4 bg-slate-50 rounded-2xl py-4 focus-within:ring-2 focus-within:ring-primary/20 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                         <g fill="none">
                             <path fill="url(#SVGp2Ojne6g)"
@@ -58,7 +59,7 @@
                             </defs>
                         </g>
                     </svg>
-                    <input type="text" v-model="form.idEntidad" placeholder="Nombre o Nit de la Entidad.."
+                    <input type="text" v-model="form.nitEntidad" placeholder="Nombre o Nit de la Entidad.."
                         class="w-full bg-transparent outline-none text-slate-800 font-semibold placeholder:text-slate-400" />
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">

@@ -1,5 +1,5 @@
 export type FiltrosSecop = {
-        idEntidad: string,
+        nitEntidad: string,
         fechaDesde: Date,
         fechaHasta: Date,
         referencia: string,
