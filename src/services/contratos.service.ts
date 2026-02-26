@@ -30,6 +30,7 @@ export const secopGetApi = async (filters:FiltrosSecop): Promise<RestContratos[]
       `,
       $where: whereClause,
       $limit: 50000,
+      $offset: 0
     }
   });
   return response.data;
@@ -42,7 +43,7 @@ const buildWhereClause = (filtros:FiltrosSecop): string => {
   const {nitEntidad, fechaDesde, fechaHasta, referencia, estado, descripcion, proveedor} = filtros
 
   // Siempre filtra por NIT
-  conditions.push(`nit_entidad='${nitEntidad}'`);
+  conditions.push(`nit_entidad='${nitEntidad.trim()}'`);
 
   if (!filtros) return conditions.join(" AND ");
 
@@ -50,8 +51,8 @@ const buildWhereClause = (filtros:FiltrosSecop): string => {
   if (filtros.fechaDesde && filtros.fechaHasta) {
     conditions.push(`
       date_trunc_ymd(fecha_de_publicacion_del)
-      BETWEEN '${fechaDesde}'
-      AND '${fechaHasta}'
+      BETWEEN '${fechaDesde.toISOString().split('T')[0]}'
+      AND '${fechaHasta.toISOString().split('T')[0]}'
     `);
   }
 

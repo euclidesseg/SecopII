@@ -19,6 +19,7 @@ export const useContratos = () =>{
         try{
             contracts.value = ContractMapper.mapTransformToArrayRestContractToContract(await secopGetApi(secopFilters));
         }catch(e:any){
+            console.error('Error al obtener contratos:', e);
             error.value = e.response?.data?.message || 'Error al obtener los datos';
         }finally{
             loading.value = false;

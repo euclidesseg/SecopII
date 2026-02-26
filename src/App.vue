@@ -21,6 +21,7 @@ const changeMode = (mode: string) => {
   modeList.value = mode
 }  
 const getData = async (filtros:FiltrosSecop) => {
+  console.log('Datos recibidos en App.vue:', filtros);
  contracts.value = [] // Limpiar los contratos actuales para mostrar el estado de carga
  await obtenerContratos(filtros) // Volver a cargar los contratos desde el servicio
 }

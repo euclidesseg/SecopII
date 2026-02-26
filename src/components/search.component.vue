@@ -11,24 +11,20 @@
     const date = new Date()
     date.setFullYear(date.getFullYear() - 1)
     const emits = defineEmits<{'filtros':[FiltrosSecop:FiltrosSecop]}>();
-    const firstDate = ref<Date>(date); // Establece la fecha inicial a un año atrás  
-    const lastDate = ref<Date>(new Date()); // Establece la fecha final a la fecha actual
 
     const form = ref<FiltrosSecop>({
         nitEntidad: '',
-        fechaDesde: firstDate.value,
-        fechaHasta: lastDate.value,
+        fechaDesde: date,
+        fechaHasta: new Date(),
         referencia: '',
         estado: '',
         descripcion: '',
         proveedor: ''
     })
-    watch(firstDate, (val) => form.value.fechaDesde = val)
-    watch(lastDate, (val) => form.value.fechaHasta = val)
+
 
 
     const onSearchForm = () => {
-        console.log('Formulario enviado con los siguientes datos:', form.value);
         emits('filtros', form.value)
     }
 </script>
@@ -67,7 +63,7 @@
                         <label for=""
                             class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Fecha
                             Desde</label>
-                        <VueDatePicker v-model="firstDate" :time-config="{ enableTimePicker: false }" :locale="es"
+                        <VueDatePicker v-model="form.fechaDesde" :time-config="{ enableTimePicker: false }" :locale="es"
                             input-class-name="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary focus:outline-none p-2.5">
                         </VueDatePicker>
                     </div>
@@ -75,7 +71,7 @@
                         <label for=""
                             class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Fecha
                             Hasta</label>
-                        <VueDatePicker v-model="lastDate" :time-config="{ enableTimePicker: false }" :locale="es">
+                        <VueDatePicker v-model="form.fechaHasta" :time-config="{ enableTimePicker: false }" :locale="es">
                         </VueDatePicker>
                     </div>
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
