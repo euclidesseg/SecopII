@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { FiltrosSecop } from '../types/filters';
 import SearchComponent from './search.component.vue';
+
     const emits = defineEmits<{'filtros':[FiltrosSecop:FiltrosSecop]}>();
 
 

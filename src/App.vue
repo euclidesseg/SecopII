@@ -7,6 +7,7 @@ import { useContratos } from './composables/useContratos';
 import { ref } from 'vue'
 import HeroComponent from './components/hero.component.vue';
 import type { FiltrosSecop } from './types/filters';
+import { validateForm } from './utils/ValidateForm';
 
 
 // definimos una propiedad reactiva (ref) indica que cuando 
@@ -21,9 +22,11 @@ const changeMode = (mode: string) => {
   modeList.value = mode
 }  
 const getData = async (filtros:FiltrosSecop) => {
-  console.log('Datos recibidos en App.vue:', filtros);
- contracts.value = [] // Limpiar los contratos actuales para mostrar el estado de carga
- await obtenerContratos(filtros) // Volver a cargar los contratos desde el servicio
+  if(!validateForm(filtros)) {
+    return
+  }
+ contracts.value = [] 
+ await obtenerContratos(filtros);
 }
 
 </script>
@@ -64,7 +67,7 @@ const getData = async (filtros:FiltrosSecop) => {
           </div>
         </div>
 
-        <ListComponent :contracts="contracts" :mode="modeList"></ListComponent>
+        <ListComponent :contracts="contracts" :mode="modeList" :loading="loading"></ListComponent>
       </section>
 
       <!-- Footer Profesional -->

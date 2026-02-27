@@ -13,7 +13,6 @@ const urlBase = "https://www.datos.gov.co/resource/p6dx-8zbt.json";
 
 
 export const secopGetApi = async (filters:FiltrosSecop): Promise<RestContratos[]> => {
-  console.log('Construyendo consulta con los siguientes filtros:', JSON.parse(JSON.stringify(filters)));
  const whereClause = buildWhereClause(filters);
  
   const response = await axios.get<RestContratos[]>(urlBase, {
