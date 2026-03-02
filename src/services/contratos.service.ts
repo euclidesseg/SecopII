@@ -8,7 +8,7 @@ import type { FiltrosSecop } from '../types/filters';
  * Servicio encargado únicamente de comunicarse con la API de SECOP II
  * No maneja estado, no usa Vue, no es reactivo.
  */
-
+//891180021
 const urlBase = "https://www.datos.gov.co/resource/p6dx-8zbt.json";
 
 
