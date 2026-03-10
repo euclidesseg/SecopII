@@ -1,174 +1,83 @@
 <script setup lang="ts">
+import type { Contrato } from '../types/Contrato'
+import { SquareArrowOutUpRight } from 'lucide-vue-next';
 
-import type { Contrato } from '../types/Contrato';
-import { createColumnHelper, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useVueTable } from '@tanstack/vue-table';
-import { FlexRender } from '@tanstack/vue-table'
-import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/outline'
+const props = defineProps<{ contracts: Contrato[] }>()
 
-
-
-import { computed, h, ref } from 'vue';
-const props = defineProps<{ contracts: Contrato[] }>();
-
-// Source - https://stackoverflow.com/a/77389753
-// Posted by mercurus_
-// Retrieved 2026-02-11, License - CC BY-SA 4.0
-
-
-
-const filterFoo = ref("");
-const filterBar = ref("");
-const filtersComputed = computed(() => {
-  const filters = [];
-  if (filterFoo.value) filters.push({ id: "id_contrato", value: filterFoo.value });
-  if (filterBar.value) filters.push({ id: "nombre_entidad", value: filterBar.value });
-  return filters;
-});
-
-
-const columnHelper = createColumnHelper<Contrato>();
-
-const columns = [
-  columnHelper.accessor('id_contrato', {
-    header: 'Referencia',
-    cell: info => info.getValue(),
-  }),
-  columnHelper.accessor('nombre_entidad', {
-    header: 'Entidad',
-    cell: info => info.getValue(),
-  }),
-  columnHelper.accessor('objeto_contrato', {
-    header: 'Descripción',
-    cell: info => info.getValue(),
-  }),
-  columnHelper.accessor('fase_actual', {
-    header: 'Fase',
-    cell: info => info.getValue(),
-  }),
-  columnHelper.accessor('fecha_publicacion', {
-    header: 'Fecha de Publicacion',
-    cell: info => info.getValue(),
-  }),
-  columnHelper.accessor('valor_contrato', {
-    header: 'Valor',
-    cell: info => info.getValue(),
-  }),
-  columnHelper.accessor('detalle', {
-  header: 'Detalles',
-  cell: info => {
-    const url = info.getValue()
-
-    return h(
-      'a',
-      {
-        href: url,
-        target: '_blank',
-        rel: 'noopener noreferrer',
-        class: 'text-purple-600 hover:text-purple-800 transition-colors'
-      },
-      h(ArrowTopRightOnSquareIcon, { class: 'w-5 h-5 mx-auto' })
-    )
-  }
-})
-
-];
-
-
-const table = useVueTable({
-  get data() {
-    return props.contracts;
-  },
-  columns,
-  getCoreRowModel: getCoreRowModel(),
-  getFilteredRowModel: getFilteredRowModel(),
-  getSortedRowModel: getSortedRowModel(),
-  getPaginationRowModel: getPaginationRowModel(),
-
-  state: {
-    get columnFilters() {
-      return filtersComputed.value;
-    }
-  }
-});
-
-
-
-
-
-
-
-
+// columnas de la tabla
+const headers = [
+  { title: "Referencia", key: "id_contrato", headerProps:{class:'bg-primary-c text-white! font-semibold'} },
+  { title: "Entidad", key: "nombre_entidad", headerProps:{class:'bg-primary-c text-white! font-semibold'} },
+  { title: "Descripcion", key: "objeto_contrato", headerProps:{class:'bg-primary-c text-white! font-semibold'} },
+  { title: "Publicación", key: "fecha_publicacion", headerProps:{class:'bg-primary-c text-white! font-semibold'} },
+  { title: "Cuantia", key: "valor_contrato", headerProps:{class:'bg-primary-c text-white! font-semibold'} },
+  { title: "Estado", key: "estado_contrato", headerProps:{class:'bg-primary-c text-white! font-semibold'} },
+  { title: "Detalles", key: "detalle", sortable:false, headerProps:{class:'bg-primary-c text-white! font-semibold'} },
+]
 </script>
 
 <template>
-  <div class="overflow-x-auto rounded-xl border border-gray-200 bg-white">
-    <table class="min-w-full text-sm text-left text-gray-600">
-      <thead class="bg-primary/80 text-xs uppercase tracking-wider text-white">
-        <tr v-for="headerGroup in table.getHeaderGroups()" :key="headerGroup.id" class="px-4">
-          <th v-for="header in headerGroup.headers" :key="header.id" @click="header.column.toggleSorting()"
-            class="px-12 py-4 cursor-pointer select-none">
-            <FlexRender :render="header.column.columnDef.header" :props="header.getContext()" />
+  <div v-if="contracts.length > 0" class="overflow-x-auto rounded-md">
 
-            <span class="ml-1">
-              {{
-                header.column.getIsSorted() === 'asc'
-                  ? ' 🔼'
-                  : header.column.getIsSorted() === 'desc'
-                    ? ' 🔽'
-                    : ''
-              }}
-            </span>
-          </th>
-        </tr>
-      </thead>
+    <!-- TABLA ESTILIZADA -->
+    <v-data-table
+      :headers="headers"
+      :items="contracts"
+      :items-per-page="10"
+      item-value="id_contrato"
+      class=""
+      density="comfortable"
+      hover
+      :mobile-breakpoint="768"
+      items-per-page-text="Elementos por página"
+      :items-per-page-options="[10, 20, 50, 100]"
+      page-text="{0} - {1} de {2}"
+      >
+  
 
-      <tbody class="divide-y divide-gray-200 bg-white">
-        <tr v-for="row in table.getRowModel().rows" :key="row.id" class="hover:bg-gray-50 transition-colors">
-          <td
-            v-for="cell in row.getVisibleCells()"
-              :key="cell.id"
-              class="px-6 py-4 align-top"
-            >
-              <div class="line-clamp-3">
-                <FlexRender
-                  :render="cell.column.columnDef.cell"
-                  :props="cell.getContext()"
-                />
-              </div>
-            </td>
-        </tr>
-      </tbody>
-    </table>
+      <!-- FORMATEAR FECHA -->
+      <template #item.objeto_contrato="{ item }">
+        <span class="line-clamp-2">
+          {{item.objeto_contrato}}
+        </span>
+      </template>
+      <!-- FORMATEAR FECHA -->
+      <template #item.fecha_publicacion="{ item }">
+        {{ new Date(item.fecha_publicacion).toLocaleDateString() }}
+      </template>
 
-    
+      <!-- FORMATEAR CUANTIA -->
+      <template #item.valor_contrato="{ item }">
+        <span class="font-semibold text-green-700">
+          $ {{ Number(item.valor_contrato).toLocaleString() }}
+        </span>
+      </template>
+
+      <!-- ESTADO CON COLOR -->
+      <template #item.estado_contrato="{ item }">
+        <v-chip
+          :color="item.estado_contrato === 'Activo' ? 'green' : 'grey'"
+          size="small"
+          variant="flat"
+        >
+          {{ item.estado_contrato }}
+        </v-chip>
+      </template>
+
+      <!-- BOTON DETALLES -->
+        <!-- ENLACE DETALLE -->
+      <template #item.detalle="{ item }">
+        <a
+          :href="item.detalle"
+          target="_blank"
+          class="text-primary-c hover:text-primary-c/90 font-medium underline flex justify-center"
+        >
+        <SquareArrowOutUpRight />
+        </a>
+      </template>
+
+
+    </v-data-table>
+
   </div>
-  <div class="flex items-center justify-start gap-1.5 p-2">
-    <button @click="table.previousPage()" class="bg-primary p-2 rounded-md text-white font-semibold hover:bg-primary/90 transition-colors text-lg cursor-pointer flex items-center justify-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="transform rotate-180 flex items-center justify-center" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m13.292 12l-4.6-4.6l.708-.708L14.708 12L9.4 17.308l-.708-.708z"/></svg>
-      <span>Anterior</span>
-    </button>
-    <button @click="table.nextPage()" class="bg-primary p-2 rounded-md text-white font-semibold hover:bg-primary/90 transition-colors text-lg cursor-pointer flex items-center justify-center">
-      <span>Siguiente</span>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m13.292 12l-4.6-4.6l.708-.708L14.708 12L9.4 17.308l-.708-.708z"/></svg>
-    </button>
-  </div>
-
 </template>
-
-<style scoped>
-.my-custom-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.my-custom-table th,
-.my-custom-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
-
-.my-custom-table th {
-  background-color: #f2f2f2;
-}
-</style>

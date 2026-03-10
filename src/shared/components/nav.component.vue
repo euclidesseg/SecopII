@@ -21,7 +21,7 @@ import { onMounted, ref } from 'vue';
     ]">
         <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
             <div class="flex items-center gap-2.5">
-                <div class="bg-primary p-2 rounded-xl shadow-lg">
+                <div class="bg-primary-c p-2 rounded-xl shadow-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="text-white w-6 h-6" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />

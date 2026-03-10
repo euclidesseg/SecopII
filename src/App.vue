@@ -49,7 +49,7 @@ const getData = async (filtros:FiltrosSecop) => {
           <div class="space-y-2">
             <h2 class="text-4xl font-black text-slate-900 tracking-tight">Fuente de Datos</h2>
             <p class="text-slate-500 font-medium flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+              <span class="w-2 h-2 rounded-full bg-primary-c animate-pulse"></span>
               Resultados procesados mediante endpoint JSON oficial
             </p>
           </div>

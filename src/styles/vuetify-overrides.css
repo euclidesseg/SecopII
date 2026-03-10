@@ -1,0 +1,119 @@
+/* Botones de paginación: color de fondo normal y hover */
+:deep(.v-pagination .v-btn) {
+  background-color: #f0f0f0 !important;
+  color: #333 !important;
+}
+
+:deep(.v-pagination .v-btn:hover) {
+  background-color: #d0d0d0 !important;
+  color: #000 !important;
+}
+
+/* Botón activo (página actual) */
+:deep(.v-pagination .v-btn--active) {
+  background-color: #6e11b0 !important;
+  color: white !important;
+}
+
+
+.v-list-item.v-list-item--active .v-list-item--variant-text .v-list-item__overlay{
+  background-color: #6e11b0 !important;
+}
+.v-list-item--variant-text .v-list-item__overlay{
+  background-color: #6e11b0 !important;
+}
+.v-list-item__overlay:hover{
+  background-color: #6e11b0 !important;
+}
+
+
+.v-list-item:hover *{
+    color: white !important;
+    z-index: 99 !important;
+}
+.v-list-item.v-list-item--active .v-list-item__content{
+    color: white !important;
+    z-index: 99;
+}
+
+
+
+
+
+
+.v-pagination__list .v-pagination__prev .v-btn,.v-pagination__next .v-btn{
+    position: relative;
+    background-color: #6407a7 !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+.v-pagination__list .v-pagination__first .v-btn,.v-pagination__last .v-btn{
+    position: relative;
+    background-color: #6e11b0 !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+ .v-pagination__prev .v-btn::before{
+  content: "<";
+  color: white;
+  height: 5px;
+  max-height: 3px;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("/src/assets/chevron-left.svg");
+ }
+
+
+ .v-pagination__next .v-btn::before{
+  content: ">";
+  color: white;
+  max-height: 3px;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+ }
+
+
+ .v-pagination__first .v-btn::before{
+  content: "<<";
+  color: white;
+  max-height: 3px;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+ }
+
+
+ .v-pagination__last .v-btn::before{
+  content: ">>";
+  color: white;
+  max-height: 3px;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+ }

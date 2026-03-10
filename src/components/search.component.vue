@@ -35,7 +35,7 @@
         <form action="" class="flex flex-col gap-2" @submit.prevent="() => onSearchForm()">
             <div class="flex flex-col flex-1 gap-3">
                 <div
-                    class="flex-1 flex items-center px-6 gap-4 bg-slate-50 rounded-2xl py-4 focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+                    class="flex-1 flex items-center px-6 gap-4 bg-slate-50 rounded-2xl py-4 focus-within:ring-2 focus-within:ring-primary-c/20 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                         <g fill="none">
                             <path fill="url(#SVGp2Ojne6g)"
@@ -61,22 +61,22 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
                         <label for=""
-                            class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Fecha
+                            class="text-sm font-medium text-gray-900 bg-primary-c/10 inline-block p-1 rounded-md my-2">Fecha
                             Desde</label>
                         <VueDatePicker v-model="form.fechaDesde" :time-config="{ enableTimePicker: false }" :locale="es"
-                            input-class-name="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary focus:outline-none p-2.5">
+                            input-class-name="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-c focus:outline-none p-2.5">
                         </VueDatePicker>
                     </div>
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
                         <label for=""
-                            class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Fecha
+                            class="text-sm font-medium text-gray-900 bg-primary-c/10 inline-block p-1 rounded-md my-2">Fecha
                             Hasta</label>
                         <VueDatePicker v-model="form.fechaHasta" :time-config="{ enableTimePicker: false }" :locale="es">
                         </VueDatePicker>
                     </div>
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
                         <label
-                            class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Referencia
+                            class="text-sm font-medium text-gray-900 bg-primary-c/10 inline-block p-1 rounded-md my-2">Referencia
                             del contrato</label>
                         <input type="text" v-model="form.referencia"
                             class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:outline-none p-2.5"
@@ -84,7 +84,7 @@
                     </div>
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
                         <label
-                            class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Estado
+                            class="text-sm font-medium text-gray-900 bg-primary-c/10 inline-block p-1 rounded-md my-2">Estado
                             del proceso</label>
                         <select v-model="form.estado"
                             class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:outline-none p-2.5">
@@ -100,14 +100,14 @@
                     </div>
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
                         <label
-                            class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Descripción</label>
+                            class="text-sm font-medium text-gray-900 bg-primary-c/10 inline-block p-1 rounded-md my-2">Descripción</label>
                         <input type="text" v-model="form.descripcion"
                             class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:outline-none p-2.5"
                             placeholder="Descripción" />
                     </div>
                     <div class="w-full border-solid h-auto min-h-24 flex items-start flex-col">
                         <label
-                            class="text-sm font-medium text-gray-900 bg-primary/10 inline-block p-1 rounded-md my-2">Proveedor</label>
+                            class="text-sm font-medium text-gray-900 bg-primary-c/10 inline-block p-1 rounded-md my-2">Proveedor</label>
                         <input type="text" v-model="form.proveedor"
                             class="w-full rounded-lg bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:outline-none p-2.5"
                             placeholder="Proveedor" />
@@ -115,7 +115,7 @@
                 </div>
             </div>
             <button type="submit"
-                class="bg-primary text-white w-full px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:opacity-90 transition-all flex items-center justify-center gap-3 shadow-md shadow-primary/50 ">
+                class="bg-primary-c! text-white w-full px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:opacity-90 transition-all flex items-center justify-center gap-3 shadow-md shadow-primary-c/50 ">
                 Ejecutar Query SoQL
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="3">
