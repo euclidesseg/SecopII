@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import type { Contrato } from '../types/Contrato'
 import { SquareArrowOutUpRight } from 'lucide-vue-next';
+import { VDataTable, VTextField } from 'vuetify/components';
 
 const props = defineProps<{ contracts: Contrato[] }>()
 
@@ -14,12 +16,26 @@ const headers = [
   { title: "Estado", key: "estado_contrato", headerProps:{class:'bg-primary-c text-white! font-semibold'} },
   { title: "Detalles", key: "detalle", sortable:false, headerProps:{class:'bg-primary-c text-white! font-semibold'} },
 ]
+
+const search = ref('');
 </script>
 
 <template>
   <div v-if="contracts.length > 0" class="overflow-x-auto rounded-md">
 
     <!-- TABLA ESTILIZADA -->
+      <div class="search-container">
+      <v-text-field
+        v-model="search"
+        placeholder="Buscar contratos..."
+        prepend-inner-icon="mdi-magnify"
+        variant="outlined"
+        density="comfortable"
+        hide-details
+        clearable
+      />
+    </div>
+
     <v-data-table
       :headers="headers"
       :items="contracts"
@@ -32,6 +48,8 @@ const headers = [
       items-per-page-text="Elementos por página"
       :items-per-page-options="[10, 20, 50, 100]"
       page-text="{0} - {1} de {2}"
+      :search="search"
+      :no-data-text="'No hay contratos disponibles'"
       >
   
 

@@ -39,7 +39,48 @@
 
 
 
+/* =============================
+   SEARCH FIELD (GLOBAL STYLE)
+============================= */
 
+/* contenedor principal */
+.v-text-field {
+  margin-bottom: 20px;
+}
+
+/* fondo */
+.v-text-field .v-field {
+  background: #faf7fd;
+  border-radius: 12px;
+  border: 1px solid rgba(110,17,176,0.25);
+  transition: all 0.25s ease;
+}
+
+/* hover */
+.v-text-field .v-field:hover {
+  border-color: #6e11b0;
+}
+
+/* focus */
+.v-text-field .v-field--active {
+  box-shadow: 0 0 0 2px rgba(110,17,176,0.25);
+}
+
+/* INPUT REAL (Vuetify 3) */
+.v-text-field .v-field__input {
+  color: #2c2c2c;
+  font-weight: 500;
+}
+
+/* placeholder */
+.v-text-field .v-field__input::placeholder {
+  color: #9a9a9a;
+}
+
+/* icono */
+.v-text-field .v-icon {
+  color: #6e11b0;
+}
 
 .v-pagination__list .v-pagination__prev .v-btn,.v-pagination__next .v-btn{
     position: relative;

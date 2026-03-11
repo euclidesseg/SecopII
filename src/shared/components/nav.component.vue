@@ -32,7 +32,7 @@ import { onMounted, ref } from 'vue';
             </div>
 
             <div class="hidden lg:flex items-center gap-10 text-sm font-bold text-slate-600 uppercase tracking-widest">
-                <a href="#" class="hover:text-[#6e11b0] transition-colors">Explorador</a>
+                <a href="#" class="hover:text-[#6e11b0] transition-colors">Legal</a>
                 <a href="#" class="hover:text-[#6e11b0] transition-colors">Estadísticas</a>             
             </div>
         </div>
