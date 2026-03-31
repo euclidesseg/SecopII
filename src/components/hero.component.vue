@@ -9,14 +9,6 @@ import SearchComponent from './search.component.vue';
 <template>
      <section class="relative pt-32 pb-20 lg:pt-56 lg:pb-32 hero-gradient px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto text-center relative z-10">
-          <div
-            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#6e11b0]/10 border border-[#6e11b0]/20 text-[#6e11b0] text-xs font-black uppercase tracking-widest mb-8 animate-pulse">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6e11b0] opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-[#6e11b0]"></span>
-            </span>
-            Conexión en vivo con Socrata Open Data
-          </div>
 
           <h1 class="text-5xl lg:text-8xl font-black text-slate-900 mb-8 tracking-tighter leading-[0.9]">
             Fiscaliza la <br />

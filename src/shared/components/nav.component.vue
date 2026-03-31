@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
+import {RouterLink} from 'vue-router';
 
     const isScrolled = ref(false);
 
@@ -21,19 +22,21 @@ import { onMounted, ref } from 'vue';
     ]">
         <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
             <div class="flex items-center gap-2.5">
-                <div class="bg-primary-c p-2 rounded-xl shadow-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="text-white w-6 h-6" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                </div>
+                <RouterLink :to="{name:'home'}">
+                    <div class="bg-primary-c p-2 rounded-xl shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-white w-6 h-6" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                    </div>
+                </RouterLink>
                 <span class="text-2xl font-black tracking-tight text-slate-900">SECOP<span
                         class="brand-text uppercase ml-0.5 text-lg">Analytics</span></span>
             </div>
 
-            <div class="hidden lg:flex items-center gap-10 text-sm font-bold text-slate-600 uppercase tracking-widest">
-                <a href="#" class="hover:text-[#6e11b0] transition-colors">Legal</a>
-                <a href="#" class="hover:text-[#6e11b0] transition-colors">Estadísticas</a>             
+            <div class="hidden lg:flex items-center gap-10 text-sm font-bold uppercase tracking-widest">
+                <RouterLink :to="{name:'legal'}" class="text-sm font-black uppercase tracking-[0.2em] brand-text hover:text-primary-c transition">Legal & Transparencia</RouterLink>
+                <!-- <a href="#" class="hover:text-primary-c transition-colors">Estadísticas</a>              -->
             </div>
         </div>
     </nav>

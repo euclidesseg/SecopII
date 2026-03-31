@@ -1,0 +1,100 @@
+<script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import { useContratosStore } from '../stores/contractStore';
+import { ref } from 'vue';
+import type { FiltrosSecop } from '../types/filters';
+import { validateForm } from '../utils/ValidateForm';
+import ListComponent from '../components/list.component.vue';
+import HeroComponent from '../components/hero.component.vue';
+
+const store = useContratosStore();
+
+const { contracts, loading, error } = storeToRefs(store);
+const { fetchContracts } = store;
+
+
+// definimos una propiedad reactiva (ref) indica que cuando 
+// esta variable cambie, la vista se actualizará automáticamente.
+
+
+const modeList = ref<string>('table')
+
+const changeMode = (mode: string) => {
+    modeList.value = mode
+}
+const getData = async (filtros: FiltrosSecop) => {
+    if (!validateForm(filtros)) {
+        return
+    }
+    contracts.value = []
+    await fetchContracts(filtros);
+}
+</script>
+<template>
+    <!-- Hero Section -->
+    <HeroComponent @filtros="getData($event)"></HeroComponent>
+
+    <section class="py-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full grow">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div class="space-y-2">
+                <h2 class="text-4xl font-black text-slate-900 tracking-tight">Fuente de Datos</h2>
+                <p class="text-slate-500 font-medium flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-primary-c animate-pulse"></span>
+                    Resultados procesados mediante endpoint JSON oficial
+                </p>
+            </div>
+            <div class="flex bg-white p-1.5 gap-1 rounded-xl border border-slate-200 shadow-sm">
+                <button class="px-5 py-2.5 rounded-lg text-sm font-bold transition hover:text-slate-600 "
+                    @click="changeMode('grid')"
+                    :class="{ 'bg-slate-100 hover:bg-slate-200 text-slate-700': modeList === 'grid' }">
+                    Vista Grid
+                </button>
+                <button class="px-5 py-2.5 rounded-lg text-sm font-bold text-slate-400 hover:text-slate-600  transition"
+                    @click="changeMode('table')"
+                    :class="{ 'bg-slate-100 hover:bg-slate-200 text-slate-700': modeList === 'table' }">
+                    Vista Tabla
+                </button>
+            </div>
+        </div>
+
+        <ListComponent :contracts="contracts" :mode="modeList" :loading="loading"></ListComponent>
+    </section>
+</template>
+
+
+<style scoped>
+@import url('../../src/style.css');
+/* scoped indica que los estilos solo se aplican a este componente */
+
+.brand-text {
+  color: #6e11b0;
+}
+
+.brand-border {
+  border-color: #6e11b0;
+}
+
+.brand-shadow {
+  box-shadow: 0 10px 25px -5px rgba(110, 17, 176, 0.3);
+}
+
+.brand-ring:focus {
+  --tw-ring-color: #6e11b0;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Gradientes personalizados */
+.hero-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(110, 17, 176, 0.08) 0%, transparent 70%);
+}
+</style>

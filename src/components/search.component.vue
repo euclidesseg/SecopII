@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import { VueDatePicker } from '@vuepic/vue-datepicker';
-    import { ref, watch } from 'vue';
+    import { ref } from 'vue';
     import { es } from "date-fns/locale"
     import '@vuepic/vue-datepicker/dist/main.css'
     import type { FiltrosSecop } from '../types/filters';

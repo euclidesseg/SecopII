@@ -45,19 +45,13 @@
                 <div class="space-y-6">
                     <h4 class="text-sm font-black uppercase tracking-[0.2em] brand-text">Recursos</h4>
                     <ul class="space-y-4 text-xs text-slate-400 font-bold uppercase tracking-wider">
-                        <li><a href="#" class="hover:text-white transition">Guía de usuario</a></li>
                         <li><a href="https://github.com/euclidesseg/SecopII" class="hover:text-white transition">Código Abierto</a></li>
                     </ul>
                 </div>
 
                 <!-- NUEVA Columna 4: Legalidad (La que pediste) -->
                 <div class="space-y-6">
-                    <h4 class="text-sm font-black uppercase tracking-[0.2em] brand-text">Legal & Transparencia</h4>
-                    <ul class="space-y-4 text-xs text-slate-400 font-bold uppercase tracking-wider">
-                        <li><a href="/descargos" class="hover:text-white transition">Descargos de Responsabilidad</a></li>
-                        <li><a href="/privacidad" class="hover:text-white transition">Tratamiento de Datos</a></li>
-                        <li><a href="/terminos" class="hover:text-white transition">Términos de Uso</a></li>
-                    </ul>
+                    <RouterLink :to="{name:'legal'}" class="text-sm font-black uppercase tracking-[0.2em] brand-text hover:text-white transition">Legal & Transparencia</RouterLink>
                 </div>
 
                 <!-- Columna 5: El Proyecto -->
@@ -65,7 +59,7 @@
                     <h4 class="text-sm font-black uppercase tracking-[0.2em] brand-text">Sobre el sitio</h4>
                     <ul class="space-y-4 text-xs text-slate-400 font-bold uppercase tracking-wider">
                         <li><a href="#" class="hover:text-white transition">¿Cómo funciona?</a></li>
-                        <li><a href="#" class="hover:text-white transition">Objetivo Educativo</a></li>
+                        <li>Objetivo: Educativo y de Información</li>
                     </ul>
                 </div>
             </div>

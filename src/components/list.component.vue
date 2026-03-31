@@ -14,7 +14,7 @@ const emits = defineEmits<{ (e: 'refresh'): void }>();
   <section class="container">
 
     <!-- CONTENIDO -->
-<component :is="mode === 'grid'? GridComponent : TablaComponent" :contracts="props.contracts"/>
+    <component :is="mode === 'grid'? GridComponent : TablaComponent" :contracts="props.contracts"/>
     <!-- LOADER OVERLAY -->
     <div v-if="loading" class="loader-overlay">
       <span class="loader"></span>

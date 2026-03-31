@@ -21,7 +21,7 @@ const search = ref('');
 </script>
 
 <template>
-  <div v-if="contracts.length > 0" class="overflow-x-auto rounded-md">
+  <div v-if="contracts.length > 0" class="overflow-x-auto border border-primary-c/40! rounded-2xl p-4">
 
     <!-- TABLA ESTILIZADA -->
       <div class="search-container">
