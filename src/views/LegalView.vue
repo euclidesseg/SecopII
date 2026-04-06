@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
+
 
 const navigateSection = (hash: string) => {
     const target = document.querySelector(hash);
@@ -6,6 +8,16 @@ const navigateSection = (hash: string) => {
         target.scrollIntoView({ behavior: 'smooth' });
     }
 };
+
+onMounted(() => {
+    const links = document.querySelectorAll('.sidebar-link');
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            links.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+});
 </script> 
 <template>
     <div class="m-full px-4 flex flex-col lg:flex-row gap-12 max-w-7xl mx-auto pt-32">
