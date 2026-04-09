@@ -9,7 +9,7 @@ import HeroComponent from '../components/hero.component.vue';
 
 const store = useContratosStore();
 
-const { contracts, loading, error } = storeToRefs(store);
+const { contracts, loading } = storeToRefs(store);
 const { fetchContracts } = store;
 
 
