@@ -73,13 +73,13 @@ const search = ref('');
 
       <!-- ESTADO CON COLOR -->
       <template #item.estado_contrato="{ item }">
-        <v-chip
+        <div
           :color="item.estado_contrato === 'Activo' ? 'green' : 'grey'"
           size="small"
           variant="flat"
         >
           {{ item.estado_contrato }}
-        </v-chip>
+        </div>
       </template>
 
       <!-- BOTON DETALLES -->

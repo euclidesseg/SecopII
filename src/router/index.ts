@@ -5,7 +5,9 @@ import LegalView from "../views/LegalView.vue";
 
 const routes = [
     {path: "/",   component: HomeView, name: "home"},
-    {path: "/legal",   component: LegalView, name:'legal'}
+    {path: "/legal",   component: LegalView, name:'legal'},
+    {path:"/contrato",name:"detalle", component: () => import("../views/DetalleContratoView.vue")},
+    {path:"/contrato/:id",name:"detalle", component: () => import("../views/DetalleContratoView.vue")},
 ]
 
 const router = createRouter({

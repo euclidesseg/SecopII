@@ -21,18 +21,18 @@ import {RouterLink} from 'vue-router';
         isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-6'
     ]">
         <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
+            <RouterLink :to="{name:'home'}">
             <div class="flex items-center gap-2.5">
-                <RouterLink :to="{name:'home'}">
                     <div class="bg-primary-c p-2 rounded-xl shadow-lg">
                         <svg xmlns="http://www.w3.org/2000/svg" class="text-white w-6 h-6" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                         </svg>
                     </div>
-                </RouterLink>
-                <span class="text-2xl font-black tracking-tight text-slate-900">SECOP<span
+                    <span class="text-2xl font-black tracking-tight text-slate-900">SECOP<span
                         class="brand-text uppercase ml-0.5 text-lg">Analytics</span></span>
-            </div>
+                    </div>
+                </RouterLink>
 
             <div class="hidden lg:flex items-center gap-10 text-sm font-bold uppercase tracking-widest">
                 <RouterLink :to="{name:'legal'}" class="text-sm font-black uppercase tracking-[0.2em] brand-text hover:text-primary-c transition">Legal & Transparencia</RouterLink>

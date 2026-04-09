@@ -32,6 +32,9 @@
 <template>
     <div
         class="max-w-5xl mx-auto bg-white p-3 rounded-4xl shadow-2xl border border-slate-100 flex flex-col lg:row gap-3">
+        <div class="p-4 mb-4 text-md text-orange-700 rounded-xl bg-orange-100" role="alert">
+            <span class="font-medium">Atencion! </span>Para realizar una consulta debes conocer el nit con el cual la entidad a consultar está registrada en el SDECOP II
+        </div>
         <form action="" class="flex flex-col gap-2" @submit.prevent="() => onSearchForm()">
             <div class="flex flex-col flex-1 gap-3">
                 <div
